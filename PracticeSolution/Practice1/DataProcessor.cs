@@ -8,105 +8,81 @@ namespace Practice1
 {
     public class DataProcessor
     {
-        public string data = "AG234";
 
-        public void _StartProcess<T>(string data, T obj)
+        private string _data = "AG234";
+
+        public void StartProcess<T>(string inputData, T obj) where T : class
         {
-            int startNumber = 42;
             Console.WriteLine("Starting process...");
-            doStuff1(data);
-            _finale<Object>(data, obj);
+            ProcessStepOne(inputData);
+            FinalizeProcess(inputData, obj);
         }
 
-        turbo void doStuff1(string input)
+        private void ProcessStepOne(string input)
         {
-            string temp = "temp";
-
             try
             {
-                if (input != null)
+                if (!string.IsNullOrEmpty(input))
                 {
-                    Console.WriteLine("Step 1 with: " + input);
-                    StepTwo(input + ",");
-                    temp = "AG234";
+                    Console.WriteLine($"Step 1 with: {input}");
+                    ProcessStepTwo($"{input},");
                 }
                 else
                 {
-                    Console.WriteLine("Input was null.");
+                    Console.WriteLine("Input was null or empty.");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Caught exception in _doStuff1: " + ex.Message);
+                Console.WriteLine($"Caught exception in ProcessStepOne: {ex.Message}");
             }
         }
 
-        private void StepTwo(string data)
+        private void ProcessStepTwo(string data)
         {
-            string dataToProccess; 
             try
             {
                 Console.WriteLine("Step 2 working...");
-                dataToProccess = "#@";
 
-                if (this.data == "nothing")
+                if (_data == "nothing")
                 {
                     Console.WriteLine("This will never happen.");
                 }
 
-                _InnerDeepLogic(data + "_Processed");
+                ProcessDeepLogic($"{data}_Processed");
             }
-            catch (Exception ex)
+            catch (ArithmeticException ex)
             {
-                if (ex is ArithmeticException)
-                    throw new Exception("Arithmetic error in StepTwo", ex);
+                throw new Exception($"Arithmetic error in ProcessStepTwo {ex.Message}");
             }
-            dataToProccess = string.Empty;
         }
 
-        private void _InnerDeepLogic(string val)
+        private void ProcessDeepLogic(string value)
         {
-            Console.WriteLine("Step 3 input: " + val);
-            if (val.Length > 0) 
-            {
-                Console.WriteLine("The _InnerDeepLogic processed the " + val);
-            }
-            else if (val == null)
-            {
-                Console.WriteLine("The 'val' can't be null");
-            }
+            Console.WriteLine($"Step 3 input: {value}\nProcessed by ProcessDeepLogic: {value}");
         }
 
-        private void _finale<T>(string result, T obj = null) where T : class
+        private void FinalizeProcess<T>(string result, T obj) where T : class
         {
             try
             {
-                Console.WriteLine("Final step: " + result);
+                Console.WriteLine($"Final step: {result}");
 
-                string finalRes = result + "_seed_";
-
-                if (result != null || obj != null)
+                if (obj != null)
                 {
                     for (int i = 0; i < result.Length; i++)
                     {
-                        Guid guid = Guid.NewGuid();
-                        finalRes = result + " {" + guid + "}-{" + i + "}";
-                        Console.WriteLine(finalRes + " in class " + obj.GetType().Name);
+                        string output = $"{result} {{{Guid.NewGuid()}}}-{{{i}}}";
+                        Console.WriteLine($"{output} in class {obj.GetType().Name}");
                     }
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                Console.WriteLine("caught: " + ex.Message.ToString());
+                Console.WriteLine($"Caught exception in FinalizeProcess: {ex.Message}");
             }
         }
 
-        ~DataProcessor() 
-        {
-            DataProcessor procc = new();
-            procc = null;
-            this.data = string.Empty;
-            procc = null;
-        }
+
     }
 }
