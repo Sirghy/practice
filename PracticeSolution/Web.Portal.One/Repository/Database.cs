@@ -6,7 +6,7 @@ namespace Web.Portal.One.Repository
 {
     public class Database
     {
-        private IConfiguration _configuration;
+        private readonly IConfiguration _configuration;
 
         public Database()
         {

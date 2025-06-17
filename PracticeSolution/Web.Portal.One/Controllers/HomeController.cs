@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Web.Portal.One.Repository;
 
 namespace Web.Portal.One.Controllers
 {

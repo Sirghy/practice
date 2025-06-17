@@ -8,7 +8,7 @@ namespace Web.Portal.One.Repository.Interfaces
     {
         public IList<SPendingOrders> GetAll()
         {
-            using (var connection = new SqlConnection(GetConnectionString()))
+            using (var connection = new SqlConnection(base.GetConnectionString()))
             {
                 connection.Open();
 
