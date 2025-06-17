@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Web.Portal.One.Domain.SPendingOrders>
+
+@{
+	ViewData["Title"] = "Pending Orders";
+	Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.IdMake)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.IdCompany)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.ScheduledDate)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.SentDate)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Price)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Quantity)
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.IdMake)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.IdCompany)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.ScheduledDate)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.SentDate)
+				</td>
+				<td>
+					$ @Html.DisplayFor(modelItem => item.Price)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Quantity)
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
