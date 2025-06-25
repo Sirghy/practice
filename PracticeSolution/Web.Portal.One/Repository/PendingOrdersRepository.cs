@@ -8,7 +8,7 @@ namespace Web.Portal.One.Repository.Interfaces
     {
         public IList<SPendingOrders> GetAll()
         {
-            const string sql = @"SELECT 
+            string sql = @"SELECT 
                                            SpO.ScheduledDate,
                                            SpO.SentDate,
                                            SpO.Price,
@@ -17,10 +17,10 @@ namespace Web.Portal.One.Repository.Interfaces
                                            SpM.Name,
                                            SpC.ID,
                                            SpC.Name
-                                     FROM romanusi_ab2.SpendingOrders as SpO
-                                           INNER JOIN romanusi_ab2.SPcMake as SpM
+                                     FROM SpendingOrders as SpO
+                                           INNER JOIN SPcMake as SpM
                                            on SpO.IdMake = SpM.ID
-                                           INNER JOIN romanusi_ab2.SCompanyes as SpC
+                                           INNER JOIN SCompanyes as SpC
                                            on SpO.IdCompany = SpC.ID";
 
             using (var connection = new SqlConnection(base.GetConnectionString()))
