@@ -1,57 +1,88 @@
 ﻿@model IEnumerable<Web.Portal.One.Domain.SPendingOrders>
 
 @{
-	ViewData["Title"] = "Pending Orders";
-	Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Pending Orders";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
 
 <table class="table">
-	<thead>
-		<tr>
-			<th>
-				<span>Make</span>
-			</th>
-			<th>
-				<span>Company</span>
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.ScheduledDate)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.SentDate)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Price)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Quantity)
-			</th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model)
-		{
-			<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.Make.Name)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Company.Name)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.ScheduledDate)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.SentDate)
-				</td>
-				<td>
-					$ @Html.DisplayFor(modelItem => item.Price)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Quantity)
-				</td>
-			</tr>
-		}
-	</tbody>
+    <thead>
+        <tr>
+            <th>
+                <span>Make</span>
+            </th>
+            <th>
+                <span>Company</span>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScheduledDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SentDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.Make?.Name))
+                    {
+                        <span class="truncate-text makeTitle" data-fullname="@item.Make.Name">
+                            @item.Make.Name
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="text-muted">—</span>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Company.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ScheduledDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SentDate)
+                </td>
+                <td>
+                    $ @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+<div id="dialog" style="display:none;" title="Full Make Name">
+    <p id="fullModelText"></p>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(".makeTitle").on("click", function () {
+            const fullName = $(this).data("fullname");
+            $("#fullModelText").text(fullName);
+            $("#dialog").dialog({
+                modal: true,
+                width: 300,
+                resizable: false,
+                draggable: true,
+                closeOnEscape: true,
+                show: { effect: "fade", duration: 200 },
+                hide: { effect: "fade", duration: 200 }
+            });
+        });
+    });
+</script>

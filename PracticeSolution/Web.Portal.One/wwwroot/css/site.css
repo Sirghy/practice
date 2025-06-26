@@ -1,18 +1,63 @@
-html {
-  font-size: 14px;
+﻿html {
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
+
+.truncate-text.makeTitle {
+    display: inline-block;
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    vertical-align: top;
+}
+
+
+/* Спрятать стандартный фон и иконку */
+.ui-dialog-titlebar-close {
+    background: none;
+    border: none;
+    text-indent: 0;
+    overflow: visible;
+    position: relative;
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+}
+
+    /* Удалить встроенный span с иконкой */
+    .ui-dialog-titlebar-close .ui-button-icon,
+    .ui-dialog-titlebar-close .ui-button-icon-space {
+        display: none;
+    }
+
+    .ui-dialog-titlebar-close::before {
+        content: "\f00d";
+        font-family: "Font Awesome 6 Free"; /* или "Font Awesome 6 Free Solid" */
+        font-weight: 900;
+        font-size: 1.2em;
+        color: red;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    /* При наведении — темнее */
+    .ui-dialog-titlebar-close:hover::before {
+        color: darkred;
+    }
