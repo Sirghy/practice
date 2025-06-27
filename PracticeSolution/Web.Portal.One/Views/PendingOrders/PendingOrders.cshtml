@@ -34,26 +34,22 @@
         {
             <tr>
                 <td>
-                    @if (!string.IsNullOrEmpty(item.Make?.Name))
-                    {
                         <span class="truncate-text makeTitle" data-fullname="@item.Make.Name">
                             @item.Make.Name
                         </span>
-                    }
-                    else
-                    {
-                        <span class="text-muted">—</span>
-                    }
+                    
+                  
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Company.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ScheduledDate)
+                    @item.ScheduledDate.ToString("dd/MM/yyyy HH:mm:ss")
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.SentDate)
+                    @(item.SentDate?.ToString("dd/MM/yyyy HH:mm:ss") ?? "—")
                 </td>
+
                 <td>
                     $ @Html.DisplayFor(modelItem => item.Price)
                 </td>
