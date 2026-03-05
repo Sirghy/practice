@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="<?php echo e(asset('newBootstrap/css/bootstrap.min.css')); ?>">
     <?php echo app('Illuminate\Foundation\Vite')(['resources/css/app.css', 'resources/css/layout.css', 'resources/css/app_layout.css','resources/css/calendar.css', 'resources/js/app.js']); ?>
     <script src="<?php echo e(asset('newBootstrap/js/bootstrap.bundle.min.js')); ?>"></script>
-    <?php echo $__env->yieldPushContent('styles'); ?>
-    <?php echo $__env->yieldPushContent('scripts'); ?>
+    <?php echo $__env->yieldContent('individual_options'); ?>
 </head>
 <body class="app_layout">
     <?php echo $__env->make('partials.nav', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>

@@ -1,0 +1,69 @@
+/* ось времени */
+.fc-agendaDay .fc-axis {
+    width: 70px !important;
+}
+
+/* высота слотов */
+.fc-time-grid .fc-slats td {
+    height: 50px !important;
+}
+
+/* mobile */
+@media (max-width: 768px) {
+    .fc-time-grid .fc-slats td {
+        height: 36px !important;
+    }
+}
+
+/* контейнер */
+.calendar-page {
+    padding-bottom: 2rem;
+}
+
+/* DAY layout */
+#calendar-day-slot {
+    height: 520px;
+}
+
+/* правая колонка */
+.calendar-side {
+    height: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* инфо */
+.calendar-info {
+    background: #f3f3f3;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 12px;
+    line-height: 1.35;
+}
+
+/* фото */
+.calendar-photo {
+    flex: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+.calendar-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* легенда */
+.dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot.free { background: #9be7a1; }
+.dot.busy { background: #e57373; }

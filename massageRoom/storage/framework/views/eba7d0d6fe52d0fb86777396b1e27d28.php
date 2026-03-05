@@ -17,7 +17,6 @@
 
         <div class="d-flex gap-1 nav-btn">
             <a class="btn btn-success" href="https://www.google.com/maps/dir/?api=1&destination=Incubatorul+de+Afaceri+Singerei" target="_blank">Location</a>
-              <a class="btn btn-primary" href="<?php echo e(route('admin.layout')); ?>">Admin</a>
             
             <button class="btn btn-warning">Reviews</button>
             <button class="btn btn-danger ">Login</button>
